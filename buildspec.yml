@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - $(aws ecr get-login --no-include-email --region ap-southeast-1)
+  build:
+    commands:
+      - docker build -t <image_name> .
+      - docker tag <image_name> <docker_repo_name>
+  post_build:
+    commands:
+      - docker push <docker_repo_name>
+artifacts:
+  files:
+    - Dockerrun.aws.json
+    - imagedefinitions.json
