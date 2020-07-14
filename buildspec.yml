@@ -5,11 +5,11 @@ phases:
       - $(aws ecr get-login --no-include-email --region ap-southeast-1)
   build:
     commands:
-      - docker build -t <image_name> .
-      - docker tag <image_name> <docker_repo_name>
+      - docker build -t sae .
+      - docker tag sae 845035073542.dkr.ecr.us-east-2.amazonaws.com/sae:latest
   post_build:
     commands:
-      - docker push <docker_repo_name>
+      - docker push 845035073542.dkr.ecr.us-east-2.amazonaws.com/sae
 artifacts:
   files:
     - Dockerrun.aws.json
